@@ -5,11 +5,11 @@ public enum Position {
 
     private final double coefficient;
 
-    Position(double coeff) {
-        this.coefficient = coeff;
+    Position(double coefficient) {
+        this.coefficient = coefficient;
     }
 
-    public double getCoeff() {
+    public double getCoefficient() {
         return coefficient;
     }
 

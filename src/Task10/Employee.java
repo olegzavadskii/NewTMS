@@ -17,7 +17,7 @@ public abstract class Employee {
 
     //метод для расчета з/п
     public double raiseSalary() {
-        finalSalary = baseSalary * this.position.getCoeff() * years;
+        finalSalary = baseSalary * this.position.getCoefficient() * years;
         return finalSalary;
     }
 

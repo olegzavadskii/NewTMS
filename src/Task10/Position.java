@@ -1,7 +1,8 @@
 package Task10;
 
 public enum Position {
-    DIRECTOR(1.5), WORKER(1);
+    DIRECTOR(1.5),
+    WORKER(1);
 
     private final double coefficient;
 

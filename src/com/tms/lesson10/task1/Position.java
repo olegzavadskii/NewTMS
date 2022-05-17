@@ -1,4 +1,4 @@
-package Task10;
+package com.tms.lesson10.task1;
 
 public enum Position {
     DIRECTOR(1.5),

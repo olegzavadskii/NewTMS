@@ -1,4 +1,4 @@
-package Task10;
+package com.tms.lesson10.task1;
 
 public abstract class Employee {
     protected Position position;
@@ -8,8 +8,7 @@ public abstract class Employee {
     protected double baseSalary = 1000;
     protected double finalSalary;
 
-    public Employee(Position position, String firstName, String secondName, int years) {
-        this.position = position;
+    public Employee(String firstName, String secondName, int years) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.years = years;
@@ -26,5 +25,12 @@ public abstract class Employee {
                 "\nСтаж " + this.years + " года\nЗ/п " + this.finalSalary;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
 }
 

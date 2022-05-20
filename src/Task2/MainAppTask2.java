@@ -4,8 +4,7 @@ import java.io.*;
 
 public class MainAppTask2 {
     public static void main(String[] args) throws IOException {
-        Reader dialogReader = new FileReader("D:\\JAVA\\HomeWork\\Lesson12\\src\\Task2\\Dialog.txt");
-        LineNumberReader lnr = new LineNumberReader(dialogReader);
+        LineNumberReader lnr = new LineNumberReader(new FileReader("D:\\JAVA\\HomeWork\\Lesson12\\src\\Task2\\Dialog.txt"));
         String ln = lnr.readLine();
         FileWriter romeo = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\Task2\\Romeo.txt");
         FileWriter juliet = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\Task2\\Juliet.txt");
@@ -30,7 +29,6 @@ public class MainAppTask2 {
             }
         }
 
-        dialogReader.close();
         lnr.close();
         romeo.close();
         juliet.close();

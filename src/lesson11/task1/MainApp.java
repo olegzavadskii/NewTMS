@@ -17,7 +17,7 @@ public class MainApp {
             dataBase.remove("exit");
             System.out.println("Элементы, содержащиеся в базе данных: " + dataBase);
 
-            if (dataBase.size() >= 5) {
+            if (dataBase.size() > 5) {
                 try {
                     throw new FullArrException();
                 } catch (FullArrException e) {
@@ -32,7 +32,7 @@ public class MainApp {
                     } catch (EmptyArrException e) {
                         System.out.println("База данных пуста. Заполните базу данных");
                     }
-                } else if (dataBase.size() > 0) {
+                } else if (dataBase.size() > 0 & dataBase.size() <= 5) {
                     System.out.println("Начальный элемент базы данных " + dataBase.get(0));
                     dataBase.remove(0);
                     dataBase.remove("get");

@@ -1,13 +1,13 @@
-package Lesson12.Task2;
+package lesson12.task2;
 
 import java.io.*;
 
 public class MainAppTask2 {
     public static void main(String[] args) throws IOException {
-        LineNumberReader lnr = new LineNumberReader(new FileReader("D:\\JAVA\\HomeWork\\Lesson12\\src\\Lesson12\\Task2\\Dialog.txt"));
+        LineNumberReader lnr = new LineNumberReader(new FileReader("D:\\JAVA\\HomeWork\\Lesson12\\src\\lesson12\\task2\\Dialog.txt"));
         String ln = lnr.readLine();
-        FileWriter romeo = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\Lesson12\\Task2\\Romeo.txt");
-        FileWriter juliet = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\Lesson12\\Task2\\Juliet.txt");
+        FileWriter romeo = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\lesson12\\task2\\Romeo.txt");
+        FileWriter juliet = new FileWriter("D:\\JAVA\\HomeWork\\Lesson12\\src\\lesson12\\task2\\Juliet.txt");
 
         while (ln != null) {
             if (ln.startsWith("ROMEO")) {

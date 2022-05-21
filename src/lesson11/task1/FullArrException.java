@@ -2,7 +2,7 @@ package lesson11.task1;
 
 public class FullArrException extends Exception {
 
-    public FullArrException() {
-
+    public FullArrException(String message) {
+        super(message);
     }
 }

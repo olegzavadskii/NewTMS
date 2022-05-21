@@ -17,20 +17,20 @@ public class MainApp {
             dataBase.remove("exit");
             System.out.println("Элементы, содержащиеся в базе данных: " + dataBase);
 
-            if (dataBase.size() > 5) {
+            if (dataBase.size() > 4) {
                 try {
-                    throw new FullArrException();
+                    throw new FullArrException("База данных заполнена. Введите clear для очищения базы данных");
                 } catch (FullArrException e) {
-                    System.out.println("База данных заполнена. Введите clear для очищения базы данных");
+                    System.out.println(e.getMessage());
                 }
             }
 
             if (newWord.equals("get")) {
                 if (dataBase.size() == 0) {
                     try {
-                        throw new EmptyArrException();
+                        throw new EmptyArrException("База данных пуста. Заполните базу данных");
                     } catch (EmptyArrException e) {
-                        System.out.println("База данных пуста. Заполните базу данных");
+                        System.out.println(e.getMessage());
                     }
                 } else if (dataBase.size() > 0 & dataBase.size() <= 5) {
                     System.out.println("Начальный элемент базы данных " + dataBase.get(0));

@@ -35,7 +35,6 @@ public class MainApp {
                 } else if (dataBase.size() > 0 & dataBase.size() <= 5) {
                     System.out.println("Начальный элемент базы данных " + dataBase.get(0));
                     dataBase.remove(0);
-                    dataBase.remove("get");
                     System.out.println("Элемент извлечен. Элементы, содержащиеся в базе данных: " + dataBase);
                 }
             }

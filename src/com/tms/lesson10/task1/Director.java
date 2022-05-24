@@ -4,17 +4,20 @@ import java.util.Arrays;
 
 public class Director extends Employee {
     protected Employee[] listOfSubordinates;
+    private int i = 0;
 
     public Director(String firstName, String secondName, int years) {
         super(firstName, secondName, years);
         this.position = Position.DIRECTOR;
-        this.listOfSubordinates = new Employee[0];
+        this.listOfSubordinates = new Employee[i];
     }
 
     //метод для назначения сотрудников
-    public Employee[] setEmployee(Employee employee) {
+    // также автоматически идет пересчет з/п с учетом количества подчиненных
+    public Employee[] addEmployee(Employee employee) {
         listOfSubordinates = Arrays.copyOf(listOfSubordinates, listOfSubordinates.length + 1);
         listOfSubordinates[listOfSubordinates.length - 1] = employee;
+        this.raiseSalary();
         return listOfSubordinates;
     }
 
@@ -24,10 +27,12 @@ public class Director extends Employee {
     }
 
     //метод для вывода информации о директоре и подчиненных
-    public void showInfo() {
-        System.out.println(this.toString() + "\n");
+    @Override
+    public String toString() {
         for (Employee emp : this.listOfSubordinates) {
             System.out.println(emp.toString() + "\n");
         }
+        return "Должность " + this.position + "\nИмя " + this.firstName + "\nФамилия " + this.secondName +
+                "\nСтаж " + this.years + " года\nЗ/п " + this.finalSalary;
     }
 }

@@ -1,51 +1,49 @@
 package lesson11.task1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
-        ArrayList<String> dataBase = new ArrayList<>(5);
+        UserRepositary ur = new UserRepositary();
         Scanner scn = new Scanner(System.in);
 
         for (; ; ) {
             System.out.println("Введите элемент для добавления в базу данных");
             String newWord = scn.next();
-            dataBase.add(newWord);
-            dataBase.remove("get");
-            dataBase.remove("clear");
-            dataBase.remove("exit");
-            System.out.println("Элементы, содержащиеся в базе данных: " + dataBase);
+            ur.addToDataBase(newWord);
+            ur.deleteFromDataBase("get");
+            ur.deleteFromDataBase("clear");
+            ur.deleteFromDataBase("exit");
+            System.out.println("Элементы, содержащиеся в базе данных: " + ur.toString());
 
-            if (dataBase.size() > 4) {
-                try {
-                    throw new FullArrException("База данных заполнена. Введите clear для очищения базы данных");
-                } catch (FullArrException e) {
-                    System.out.println(e.getMessage());
+            try {
+                ur.validateToFull();
+            } catch (FullArrException e) {
+                System.out.println(e.getMessage());
+            }
+
+            try {
+                if (ur.getDataBase().size() == 0) {
+                    ur.validateToEmpty();
                 }
+            } catch (EmptyArrException e) {
+                System.out.println(e.getMessage());
+                continue;
             }
 
             if (newWord.equals("get")) {
-                if (dataBase.size() == 0) {
-                    try {
-                        throw new EmptyArrException("База данных пуста. Заполните базу данных");
-                    } catch (EmptyArrException e) {
-                        System.out.println(e.getMessage());
-                    }
-                } else if (dataBase.size() > 0 & dataBase.size() <= 5) {
-                    System.out.println("Начальный элемент базы данных " + dataBase.get(0));
-                    dataBase.remove(0);
-                    System.out.println("Элемент извлечен. Элементы, содержащиеся в базе данных: " + dataBase);
-                }
+                ur.deleteFromDataBase("get");
+                System.out.println("Начальный элемент базы данных " + ur.getDataBase().get(0));
+                ur.getDataBase().remove(0);
+                System.out.println("Элемент извлечен. Элементы, содержащиеся в базе данных: " + ur.toString());
             }
 
             if (newWord.equals("clear")) {
-                dataBase.clear();
+                ur.getDataBase().clear();
                 System.out.println("База данных очищена. Заполните базу данных");
             }
 
             if (newWord.equals("exit")) {
-                System.out.println("Элементы, содержащиеся в базе данных: " + dataBase);
                 break;
             }
         }

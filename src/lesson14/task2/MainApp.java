@@ -31,7 +31,7 @@ public class MainApp {
         userTreeSet.add(new User("Huan", Sex.MALE, 41));
 
         //поиск по имени
-        FindUserNameService findUserNameService = new FindUserNameService();
+        CollectionWithUserNameService findUserNameService = new CollectionWithUserNameService();
         findUserNameService.find(userArrayList, "Anna");
         findUserNameService.find(userArrayList, "Hector");
         System.out.println();

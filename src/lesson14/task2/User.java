@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class User implements Comparable<User> {
     private String name;
-    private String sex;
+    private Sex sex;
     private int age;
 
     public User() {
     }
 
-    public User(String name, String sex, int age) {
+    public User(String name, Sex sex, int age) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -52,7 +52,7 @@ public class User implements Comparable<User> {
         return age;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 

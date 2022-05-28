@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class CollectionWithSexService {
 
-    public void FindUserBySex(Collection<User> users, String sex) {
+    public void FindUserBySex(Collection<User> users, Sex sex) {
         Iterator<User> iterator = users.iterator();
         Collection<User> listBySex = new ArrayList<>();
         while (iterator.hasNext()) {

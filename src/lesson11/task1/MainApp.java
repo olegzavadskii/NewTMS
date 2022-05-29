@@ -23,9 +23,7 @@ public class MainApp {
             }
 
             try {
-                if (ur.getDataBase().size() == 0) {
-                    ur.validateToEmpty();
-                }
+                ur.validateToEmpty();
             } catch (EmptyArrException e) {
                 System.out.println(e.getMessage());
                 continue;

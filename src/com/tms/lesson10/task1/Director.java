@@ -1,4 +1,4 @@
-package com.tms.lesson10.task1;
+package lesson10.task1;
 
 import java.util.Arrays;
 

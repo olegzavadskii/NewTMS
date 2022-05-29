@@ -5,7 +5,7 @@ import java.util.*;
 public class MainApp {
     public static void main(String[] args) {
         //создание и заполнение List
-        ArrayList<User> userArrayList = new ArrayList<>();
+        List<User> userArrayList = new ArrayList<>();
         userArrayList.add(new User("Mark", Sex.MALE, 25));
         userArrayList.add(new User("Monica", Sex.FEMALE, 35));
         userArrayList.add(new User("Kevin", Sex.MALE, 37));
@@ -18,7 +18,7 @@ public class MainApp {
         userArrayList.add(new User("Alexa", Sex.FEMALE, 25));
 
         //создание и заполнение Set
-        TreeSet<User> userTreeSet = new TreeSet<>();
+        Set<User> userTreeSet = new TreeSet<>();
         userTreeSet.add(new User("Harry", Sex.MALE, 30));
         userTreeSet.add(new User("Jessica", Sex.FEMALE, 30));
         userTreeSet.add(new User("Veronica", Sex.FEMALE, 24));
@@ -32,16 +32,16 @@ public class MainApp {
 
         //поиск по имени
         CollectionWithUserNameService findUserNameService = new CollectionWithUserNameService();
-        findUserNameService.find(userArrayList, "Anna");
-        findUserNameService.find(userArrayList, "Hector");
+        System.out.println(findUserNameService.findUserByName(userArrayList, "Anna"));
+        System.out.println(findUserNameService.findUserByName(userArrayList, "Hector"));
         System.out.println();
-        findUserNameService.find(userTreeSet, "Harry");
+        System.out.println(findUserNameService.findUserByName(userTreeSet, "Harry"));
         System.out.println();
 
         //создание коллекции на основе пола
         CollectionWithSexService collectionWithSexService = new CollectionWithSexService();
-        collectionWithSexService.FindUserBySex(userArrayList, Sex.MALE);
-        collectionWithSexService.FindUserBySex(userTreeSet, Sex.FEMALE);
+        System.out.println(collectionWithSexService.findUserBySex(userArrayList, Sex.MALE));
+        System.out.println(collectionWithSexService.findUserBySex(userTreeSet, Sex.FEMALE));
         System.out.println();
 
         System.out.println(userArrayList); //вывод до сортировки

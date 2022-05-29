@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class CollectionWithUserNameService {
-    public void find(Collection<User> users, String name) {
+    public Collection<User> findUserByName(Collection<User> users, String name) {
         Iterator<User> iterator = users.iterator();
         Collection<User> listByName = new ArrayList<>();
         while (iterator.hasNext()) {
@@ -14,6 +14,6 @@ public class CollectionWithUserNameService {
                 listByName.add(nextUser);
             }
         }
-        System.out.println(listByName);
+        return listByName;
     }
 }

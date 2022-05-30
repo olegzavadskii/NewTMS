@@ -1,4 +1,4 @@
-package lesson10.task1;
+package homework10.task1;
 
 public abstract class Employee {
     protected Position position;

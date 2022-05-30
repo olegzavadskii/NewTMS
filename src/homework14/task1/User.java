@@ -1,4 +1,4 @@
-package lesson14.task1;
+package homework14.task1;
 
 public class User {
     private String name;

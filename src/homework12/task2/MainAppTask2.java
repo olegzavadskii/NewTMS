@@ -1,4 +1,4 @@
-package lesson12.task2;
+package homework12.task2;
 
 import java.io.*;
 

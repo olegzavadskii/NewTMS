@@ -1,4 +1,4 @@
-package lesson14.task2;
+package homework14.task2;
 
 public enum Sex {
     MALE,

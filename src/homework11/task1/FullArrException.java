@@ -1,4 +1,4 @@
-package lesson11.task1;
+package homework11.task1;
 
 public class FullArrException extends Exception {
 

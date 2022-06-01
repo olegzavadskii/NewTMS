@@ -1,4 +1,4 @@
-package homework15.dataapi.task1;
+package homework15.dateapi.task1;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

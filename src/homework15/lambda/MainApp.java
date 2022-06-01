@@ -15,6 +15,8 @@ public class MainApp {
                 System.out.println(reverseText);
             } else if (numForLogic == 2) {
                 System.out.println("Факториал числа " + number + " равен " + factorial(number));
+            } else {
+                System.out.println("Введите 1 или 2");
             }
         });
 

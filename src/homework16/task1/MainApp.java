@@ -24,6 +24,8 @@ public class MainApp {
         arrayList.add(45);
         arrayList.add(8);
         arrayList.add(29);
+        arrayList.add(18);
+        arrayList.add(6);
         arrayList.add(41);
         arrayList.add(42);
         arrayList.add(14);
@@ -34,36 +36,36 @@ public class MainApp {
         List<Integer> collect1 = arrayList.stream()
                 .distinct()
                 .collect(Collectors.toList());
-        System.out.println(collect1);
+        System.out.println("Коллекция без дубликатов " + collect1);
 
-        //вывод четных элементов
+        //вывод четных элементов в диапазоне от 7 до 17 включительно
         List<Integer> integerStream = arrayList.stream()
-                .filter(x -> x % 2 == 0)
+                .filter(x -> x % 2 == 0 && x >= 7 && x <= 17)
                 .collect(Collectors.toList());
-        System.out.println(integerStream);
+        System.out.println("Четные элементы от 7 до 17 включительно " + integerStream);
 
         //умножение на 2
         List<Integer> collect2 = arrayList.stream()
                 .map(x -> x * 2)
                 .collect(Collectors.toList());
-        System.out.println(collect2);
+        System.out.println("Все элементы увеличены в 2 раза " + collect2);
 
         //сортировка и вывод первых четырех элементов
         List<Integer> collect3 = arrayList.stream()
                 .sorted()
                 .limit(4)
                 .collect(Collectors.toList());
-        System.out.println(collect3);
+        System.out.println("Сортировка и вывод первых 4 элементов " + collect3);
 
         //вывод количества элементов
         long count = arrayList.stream().count();
-        System.out.println(count);
+        System.out.println("Количество элементов " + count);
 
         //вывод среднего арифметического
         OptionalDouble average = arrayList.stream()
                 .mapToInt(Integer::intValue)
                 .average();
-        System.out.println(average);
+        System.out.println("Среднее арифметическое " + average);
 
 
     }

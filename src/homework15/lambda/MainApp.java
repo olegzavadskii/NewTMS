@@ -8,19 +8,21 @@ public class MainApp {
         System.out.println("Введите 1 или 2");
         int numForLogic = scn.nextInt();
 
-        FunctionalClass funCl1 = new FunctionalClass();
-        funCl1.doSmth("Hello world", 10, (String text, int number) -> {
-            if (numForLogic == 1) {
-                String reverseText = new StringBuilder(text).reverse().toString();
-                System.out.println(reverseText);
-            } else if (numForLogic == 2) {
-                System.out.println("Факториал числа " + number + " равен " + factorial(number));
-            } else {
-                System.out.println("Введите 1 или 2");
-            }
-        });
+        //лямбда для текста в обратном порядке
+        MyInterface theFirstInterface = (String textForReverse, int numberForLogic) -> {
+            String reverseText = new StringBuilder(textForReverse).reverse().toString();
+            System.out.println(reverseText);
+        };
+
+        //лямбда для нахождения факториала
+        MyInterface theSecondInterface = (String textForReverse, int numberForLogic) -> {
+            System.out.println("Факториал числа " + numberForLogic + " равен " + factorial(numberForLogic));
+        };
 
 
+        FunctionalClass functionalClass = new FunctionalClass();
+        functionalClass.doSomething(numForLogic, "Hello world", 10,
+                theFirstInterface, theSecondInterface);
     }
 
     //метод для поиска факториала

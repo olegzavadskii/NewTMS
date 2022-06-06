@@ -9,29 +9,21 @@ public class MainApp {
         int numForLogic = scn.nextInt();
 
         //лямбда для текста в обратном порядке
-        MyInterface theFirstInterface = (String textForReverse, int numberForLogic) -> {
+        InterfaceForReverse interfaceForReverse = (String textForReverse) -> {
             String reverseText = new StringBuilder(textForReverse).reverse().toString();
             System.out.println(reverseText);
         };
 
         //лямбда для нахождения факториала
-        MyInterface theSecondInterface = (String textForReverse, int numberForLogic) -> {
-            System.out.println("Факториал числа " + numberForLogic + " равен " + factorial(numberForLogic));
+        InterfaceForFactorial interfaceForFactorial = (int numberForFactorial) -> {
+            FactorialFinder ff = new FactorialFinder();
+            System.out.println("Факториал числа " + numberForFactorial + " равен " + ff.findFactorial(numberForFactorial));
         };
 
 
         FunctionalClass functionalClass = new FunctionalClass();
-        functionalClass.doSomething(numForLogic, "Hello world", 10,
-                theFirstInterface, theSecondInterface);
+        functionalClass.reverseOrFindFactorial(numForLogic, "Hello world", 10,
+                interfaceForReverse, interfaceForFactorial);
     }
 
-    //метод для поиска факториала
-    public static int factorial(int number) {
-        if (number <= 1) {
-            return 1;
-        } else {
-            return factorial(number - 1) * number;
-        }
-
-    }
 }

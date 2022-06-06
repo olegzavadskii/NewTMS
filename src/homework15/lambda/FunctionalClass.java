@@ -1,12 +1,12 @@
 package homework15.lambda;
 
 public class FunctionalClass {
-    void doSomething(int numberForLogic, String textForReverse, int numberForFactorial,
-                     MyInterface theFirstInterface, MyInterface theSecondInterface) {
+    void reverseOrFindFactorial(int numberForLogic, String textForReverse, int numberForFactorial,
+                                InterfaceForReverse interfaceForReverse, InterfaceForFactorial interfaceForFactorial) {
         if (numberForLogic == 1) {
-            theFirstInterface.doSomething(textForReverse, numberForFactorial);
+            interfaceForReverse.toReverseText(textForReverse);
         } else if (numberForLogic == 2) {
-            theSecondInterface.doSomething(textForReverse, numberForFactorial);
+            interfaceForFactorial.toFindFactorial(numberForFactorial);
         } else {
             System.out.println("Введите 1 или 2");
         }

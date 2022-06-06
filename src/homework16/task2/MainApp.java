@@ -1,5 +1,7 @@
 package homework16.task2;
 
+import homework7.task2.Int;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +30,9 @@ public class MainApp {
 
 
         //Сгенерировать map где ключ - фамилия семьи, а значение - размер зп
-        Map<String, Integer> collect = families.stream()
+        Map<String, Integer> map1 = families.stream()
                 .collect(Collectors.toMap(Family::getSname, Family::getSalary));
-        System.out.println(collect);
+        System.out.println(map1);
 
         //количество мальчиков среди всех семей
         long count = families.stream()
@@ -47,10 +49,15 @@ public class MainApp {
         System.out.println(collect2);
 
         //сколько у каждой семьи детей
-        List<Integer> collect1 = families.stream()
-                .map(family -> family.getChildren().size())
-                .collect(Collectors.toList());
-        System.out.println(collect1);
+        //с помощью генерации Map
+        Map<String, Integer> map2 = families.stream().
+                collect(Collectors.toMap(Family::getSname, family -> family.getChildren().size()));
+        System.out.println(map2);
+
+        //с помощью forEach
+//        families.stream()
+//                .forEach(family ->
+//                        System.out.println("В семье " + family.getSname() + " " + family.getChildren().size() + " детей"));
 
         //есть ли хоть одна семья у которой есть ребенок с именем...
         boolean b = families.stream()

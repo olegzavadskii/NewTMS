@@ -1,35 +1,15 @@
 package homework16.task1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 public class MainApp {
     public static void main(String[] args) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(17);
-        arrayList.add(24);
-        arrayList.add(48);
-        arrayList.add(66);
-        arrayList.add(10);
-        arrayList.add(14);
-        arrayList.add(45);
-        arrayList.add(4);
-        arrayList.add(12);
-        arrayList.add(21);
-        arrayList.add(5);
-        arrayList.add(16);
-        arrayList.add(17);
-        arrayList.add(45);
-        arrayList.add(8);
-        arrayList.add(29);
-        arrayList.add(18);
-        arrayList.add(6);
-        arrayList.add(41);
-        arrayList.add(42);
-        arrayList.add(14);
-        arrayList.add(62);
+        List<Integer> arrayList = Arrays.asList(17, 24, 48, 66, 10, 14, 45,
+                4, 12, 21, 5, 16, 17, 45, 8, 29, 18, 6, 41, 42, 14, 62);
         System.out.println(arrayList);
 
         //удаление дубликатов
@@ -40,7 +20,8 @@ public class MainApp {
 
         //вывод четных элементов в диапазоне от 7 до 17 включительно
         List<Integer> integerStream = arrayList.stream()
-                .filter(x -> x % 2 == 0 && x >= 7 && x <= 17)
+                .filter(x -> x % 2 == 0)
+                .filter(x -> x >= 7 && x <= 17)
                 .collect(Collectors.toList());
         System.out.println("Четные элементы от 7 до 17 включительно " + integerStream);
 

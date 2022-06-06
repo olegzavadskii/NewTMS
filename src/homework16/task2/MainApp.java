@@ -1,7 +1,5 @@
 package homework16.task2;
 
-import homework7.task2.Int;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

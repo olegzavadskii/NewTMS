@@ -1,13 +1,12 @@
 package homework18.task1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class MainApp {
     public static void main(String[] args) {
         List<Object> objects = new ArrayList<>();
-        ReentrantLock locker = new ReentrantLock();
         Object object = new Object();
 
         RepositoryThreadSync threadSyncModif1 = new RepositoryThreadSync(object, objects, Action.MODIFICATION);
@@ -16,12 +15,12 @@ public class MainApp {
         RepositoryThreadSync threadSyncFind1 = new RepositoryThreadSync(object, objects, Action.FIND);
         RepositoryThreadSync threadSyncFind2 = new RepositoryThreadSync(object, objects, Action.FIND);
         RepositoryThreadSync threadSyncFind3 = new RepositoryThreadSync(object, objects, Action.FIND);
-        RepositoryThreadLock threadLockModif1 = new RepositoryThreadLock(object, objects, locker, Action.MODIFICATION);
-        RepositoryThreadLock threadLockModif2 = new RepositoryThreadLock(object, objects, locker, Action.MODIFICATION);
-        RepositoryThreadLock threadLockModif3 = new RepositoryThreadLock(object, objects, locker, Action.MODIFICATION);
-        RepositoryThreadLock threadLockFind1 = new RepositoryThreadLock(object, objects, locker, Action.FIND);
-        RepositoryThreadLock threadLockFind2 = new RepositoryThreadLock(object, objects, locker, Action.FIND);
-        RepositoryThreadLock threadLockFind3 = new RepositoryThreadLock(object, objects, locker, Action.FIND);
+        RepositoryThreadLock threadLockModif1 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockModif2 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockModif3 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockFind1 = new RepositoryThreadLock(object, objects, Action.FIND);
+        RepositoryThreadLock threadLockFind2 = new RepositoryThreadLock(object, objects, Action.FIND);
+        RepositoryThreadLock threadLockFind3 = new RepositoryThreadLock(object, objects, Action.FIND);
 
         Thread myThreadSync1 = new Thread(threadSyncModif1, "ModifSync1");
         Thread myThreadSync2 = new Thread(threadSyncModif2, "ModifSync2");
@@ -36,35 +35,31 @@ public class MainApp {
         Thread myThreadLock5 = new Thread(threadLockFind2, "FindLock2");
         Thread myThreadLock6 = new Thread(threadLockFind3, "FindLock3");
 
-        myThreadSync1.start();
-        myThreadSync2.start();
-        myThreadSync3.start();
-        myThreadSync4.start();
-        myThreadSync5.start();
-        myThreadSync6.start();
+        List<Thread> listMyThread = Arrays.asList(myThreadSync1, myThreadSync2, myThreadSync3,
+                myThreadSync4, myThreadSync5, myThreadSync6,
+                myThreadLock1, myThreadLock2, myThreadLock3,
+                myThreadLock4, myThreadLock5, myThreadLock6);
 
-//        myThreadLock1.start();
-//        myThreadLock2.start();
-//        myThreadLock3.start();
-//        myThreadLock4.start();
-//        myThreadLock5.start();
-//        myThreadLock6.start();
+        for (Thread thread : listMyThread) {
+            thread.start();
+        }
+
+        List<RepositoryThreadSync> listThreadSync = Arrays.asList(threadSyncModif1, threadSyncModif2,
+                threadSyncModif3, threadSyncFind1, threadSyncFind2, threadSyncFind3);
+        List<RepositoryThreadLock> listThreadLock = Arrays.asList(threadLockModif1, threadLockModif2,
+                threadLockModif3, threadLockFind1, threadLockFind2, threadLockFind3);
+
 
         //остановка потоков
         try {
             Thread.sleep(10000);
-            threadSyncModif1.stopThread();
-            threadSyncModif2.stopThread();
-            threadSyncModif3.stopThread();
-            threadSyncFind1.stopThread();
-            threadSyncFind2.stopThread();
-            threadSyncFind3.stopThread();
-            threadLockModif1.stopThread();
-            threadLockModif2.stopThread();
-            threadLockModif3.stopThread();
-            threadLockFind1.stopThread();
-            threadLockFind2.stopThread();
-            threadLockFind3.stopThread();
+            for (RepositoryThreadSync syncThread : listThreadSync) {
+                syncThread.stopThread();
+            }
+            for (RepositoryThreadLock lockThread : listThreadLock) {
+                lockThread.stopThread();
+            }
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

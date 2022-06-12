@@ -2,6 +2,7 @@ package homework18.task1;
 
 import java.util.List;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class RepositoryThreadLock implements Runnable {
     private List<Object> objects;
@@ -9,13 +10,12 @@ public class RepositoryThreadLock implements Runnable {
     private Object object;
     private Action action;
     private volatile boolean isRunning = true;
-    private Lock locker;
+    private Lock locker = new ReentrantLock();
 
 
-    public RepositoryThreadLock(Object object, List<Object> objects, Lock locker, Action action) {
+    public RepositoryThreadLock(Object object, List<Object> objects, Action action) {
         this.object = object;
         this.objects = objects;
-        this.locker = locker;
         this.action = action;
     }
 
@@ -33,12 +33,13 @@ public class RepositoryThreadLock implements Runnable {
             }
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
+        } finally {
+            locker.unlock();
         }
-        locker.unlock();
         return isFound;
     }
 
-    private synchronized void toAddOrDelete(Object object) {
+    private void toAddOrDelete(Object object) {
         locker.lock();
         try {
             System.out.println("The message before sleeping...");
@@ -53,8 +54,9 @@ public class RepositoryThreadLock implements Runnable {
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } finally {
+            locker.unlock();
         }
-        locker.unlock();
     }
 
     @Override

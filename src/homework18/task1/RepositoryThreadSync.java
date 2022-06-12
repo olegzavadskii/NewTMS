@@ -6,12 +6,14 @@ public class RepositoryThreadSync implements Runnable {
     private List<Object> objects;
     private boolean isFound = false;
     private Object object;
+    private Action action;
     private volatile boolean isRunning = true;
 
 
-    public RepositoryThreadSync(Object object, List<Object> objects) {
+    public RepositoryThreadSync(Object object, List<Object> objects, Action action) {
         this.object = object;
         this.objects = objects;
+        this.action = action;
     }
 
     private synchronized boolean find(Object object) {
@@ -51,8 +53,12 @@ public class RepositoryThreadSync implements Runnable {
     @Override
     public void run() {
         while (isRunning) {
-            find(object);
-            toAddOrDelete(object);
+            if (this.action == Action.MODIFICATION) {
+                find(object);
+                toAddOrDelete(object);
+            } else {
+                find(object);
+            }
         }
     }
 

@@ -7,14 +7,16 @@ public class RepositoryThreadLock implements Runnable {
     private List<Object> objects;
     private boolean isFound = false;
     private Object object;
+    private Action action;
     private volatile boolean isRunning = true;
     private Lock locker;
 
 
-    public RepositoryThreadLock(Object object, List<Object> objects, Lock locker) {
+    public RepositoryThreadLock(Object object, List<Object> objects, Lock locker, Action action) {
         this.object = object;
         this.objects = objects;
         this.locker = locker;
+        this.action = action;
     }
 
     private boolean find(Object object) {
@@ -58,8 +60,12 @@ public class RepositoryThreadLock implements Runnable {
     @Override
     public void run() {
         while (isRunning) {
-            find(object);
-            toAddOrDelete(object);
+            if (this.action == Action.MODIFICATION) {
+                find(object);
+                toAddOrDelete(object);
+            } else {
+                find(object);
+            }
         }
     }
 

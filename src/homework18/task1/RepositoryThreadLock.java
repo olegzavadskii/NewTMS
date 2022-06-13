@@ -1,26 +1,22 @@
 package homework18.task1;
 
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class RepositoryThreadLock implements Runnable {
     private List<Object> objects;
     private boolean isFound = false;
-    private Object object;
+    private ObjectForSyncAndLock object;
     private Action action;
     private volatile boolean isRunning = true;
-    private Lock locker = new ReentrantLock();
 
-
-    public RepositoryThreadLock(Object object, List<Object> objects, Action action) {
+    public RepositoryThreadLock(ObjectForSyncAndLock object, List<Object> objects, Action action) {
         this.object = object;
         this.objects = objects;
         this.action = action;
     }
 
-    private boolean find(Object object) {
-        locker.lock();
+    private boolean find(ObjectForSyncAndLock object) {
+        object.getLock().lock();
         try {
             System.out.println("The message before sleeping...");
             Thread.sleep(500);
@@ -34,13 +30,13 @@ public class RepositoryThreadLock implements Runnable {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         } finally {
-            locker.unlock();
+            object.getLock().unlock();
         }
         return isFound;
     }
 
-    private void toAddOrDelete(Object object) {
-        locker.lock();
+    private void toAddOrDelete(ObjectForSyncAndLock object) {
+        object.getLock().lock();
         try {
             System.out.println("The message before sleeping...");
             Thread.sleep(500);
@@ -55,7 +51,7 @@ public class RepositoryThreadLock implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            locker.unlock();
+            object.getLock().unlock();
         }
     }
 

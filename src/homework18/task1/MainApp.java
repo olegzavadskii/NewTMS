@@ -3,24 +3,27 @@ package homework18.task1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MainApp {
     public static void main(String[] args) {
         List<Object> objects = new ArrayList<>();
-        Object object = new Object();
+        ReentrantLock locker = new ReentrantLock();
+        ObjectForSyncAndLock ofs = new ObjectForSyncAndLock();
+        ObjectForSyncAndLock ofl = new ObjectForSyncAndLock(locker);
 
-        RepositoryThreadSync threadSyncModif1 = new RepositoryThreadSync(object, objects, Action.MODIFICATION);
-        RepositoryThreadSync threadSyncModif2 = new RepositoryThreadSync(object, objects, Action.MODIFICATION);
-        RepositoryThreadSync threadSyncModif3 = new RepositoryThreadSync(object, objects, Action.MODIFICATION);
-        RepositoryThreadSync threadSyncFind1 = new RepositoryThreadSync(object, objects, Action.FIND);
-        RepositoryThreadSync threadSyncFind2 = new RepositoryThreadSync(object, objects, Action.FIND);
-        RepositoryThreadSync threadSyncFind3 = new RepositoryThreadSync(object, objects, Action.FIND);
-        RepositoryThreadLock threadLockModif1 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
-        RepositoryThreadLock threadLockModif2 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
-        RepositoryThreadLock threadLockModif3 = new RepositoryThreadLock(object, objects, Action.MODIFICATION);
-        RepositoryThreadLock threadLockFind1 = new RepositoryThreadLock(object, objects, Action.FIND);
-        RepositoryThreadLock threadLockFind2 = new RepositoryThreadLock(object, objects, Action.FIND);
-        RepositoryThreadLock threadLockFind3 = new RepositoryThreadLock(object, objects, Action.FIND);
+        RepositoryThreadSync threadSyncModif1 = new RepositoryThreadSync(ofs, objects, Action.MODIFICATION);
+        RepositoryThreadSync threadSyncModif2 = new RepositoryThreadSync(ofs, objects, Action.MODIFICATION);
+        RepositoryThreadSync threadSyncModif3 = new RepositoryThreadSync(ofs, objects, Action.MODIFICATION);
+        RepositoryThreadSync threadSyncFind1 = new RepositoryThreadSync(ofs, objects, Action.FIND);
+        RepositoryThreadSync threadSyncFind2 = new RepositoryThreadSync(ofs, objects, Action.FIND);
+        RepositoryThreadSync threadSyncFind3 = new RepositoryThreadSync(ofs, objects, Action.FIND);
+        RepositoryThreadLock threadLockModif1 = new RepositoryThreadLock(ofl, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockModif2 = new RepositoryThreadLock(ofl, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockModif3 = new RepositoryThreadLock(ofl, objects, Action.MODIFICATION);
+        RepositoryThreadLock threadLockFind1 = new RepositoryThreadLock(ofl, objects, Action.FIND);
+        RepositoryThreadLock threadLockFind2 = new RepositoryThreadLock(ofl, objects, Action.FIND);
+        RepositoryThreadLock threadLockFind3 = new RepositoryThreadLock(ofl, objects, Action.FIND);
 
         Thread myThreadSync1 = new Thread(threadSyncModif1, "ModifSync1");
         Thread myThreadSync2 = new Thread(threadSyncModif2, "ModifSync2");

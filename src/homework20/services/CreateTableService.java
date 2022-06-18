@@ -18,9 +18,7 @@ public class CreateTableService {
     }
 
     public void createTable() {
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
+        try (Statement statement = connection.createStatement()) {
             statement.execute(CREATE);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -50,7 +50,7 @@ public class PhoneServiceImpl implements PhoneService {
         Phone phoneFromTable = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement
                 ("select * from phones where id = ?")) {
-            if (id != 0) {
+            if (id > 0) {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {

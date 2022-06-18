@@ -15,13 +15,10 @@ import java.util.List;
 public class MainApp {
     public static void main(String[] args) {
 
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/homework20",
-                    "postgres",
-                    "ghbdtn");
-
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/homework20",
+                "postgres",
+                "ghbdtn")) {
             CreateTableService cts = new CreateTableService(connection);
             cts.createTable();
 
@@ -57,13 +54,6 @@ public class MainApp {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-
     }
 }

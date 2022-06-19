@@ -7,6 +7,9 @@ public class Phone {
     private double diagonal;
     private double storage;
 
+    public Phone() {
+    }
+
     public Phone(Brand brand, String model, double diagonal, double storage) {
         this.brand = brand;
         this.model = model;

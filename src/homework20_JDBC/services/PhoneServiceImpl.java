@@ -60,6 +60,8 @@ public class PhoneServiceImpl implements PhoneService {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } else {
+            return phoneFromTable = new Phone();
         }
         return phoneFromTable;
     }
@@ -75,7 +77,7 @@ public class PhoneServiceImpl implements PhoneService {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return phoneList;
     }
@@ -94,7 +96,7 @@ public class PhoneServiceImpl implements PhoneService {
                     }
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return phoneList;
@@ -127,7 +129,7 @@ public class PhoneServiceImpl implements PhoneService {
                     }
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         return phoneList;

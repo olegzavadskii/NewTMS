@@ -39,7 +39,8 @@ public class MainApp {
                 psi.save(el);
             }
 
-            System.out.println(psi.getById(4));
+            Phone byId = psi.getById(4);
+            System.out.println(byId.getBrand());
 
             System.out.println(psi.getAll());
 

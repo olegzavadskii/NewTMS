@@ -39,7 +39,7 @@ public class MainApp {
                 psi.save(el);
             }
 
-            System.out.println(psi.get(4));
+            System.out.println(psi.getById(4));
 
             System.out.println(psi.getAll());
 

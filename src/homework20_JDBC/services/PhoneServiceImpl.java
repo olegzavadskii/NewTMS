@@ -46,20 +46,20 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    public Phone get(int id) {
+    public Phone getById(int id) {
         Phone phoneFromTable = null;
-        try (PreparedStatement preparedStatement = connection.prepareStatement
-                ("select * from phones where id = ?")) {
-            if (id > 0) {
+        if (id > 0) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from phones where id = ?")) {
                 preparedStatement.setInt(1, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         phoneFromTable = getPhoneFromTable(resultSet);
                     }
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return phoneFromTable;
     }
@@ -102,12 +102,14 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     public void delete(int id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement
-                ("delete from phones where id = ?")) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (id > 0) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement
+                    ("delete from phones where id = ?")) {
+                preparedStatement.setInt(1, id);
+                preparedStatement.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

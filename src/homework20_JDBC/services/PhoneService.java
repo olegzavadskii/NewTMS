@@ -8,7 +8,7 @@ import java.util.List;
 public interface PhoneService {
     void save(Phone phone);
 
-    Phone get(int id);
+    Phone getById(int id);
 
     List<Phone> getAll();
 
